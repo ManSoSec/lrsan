@@ -63,7 +63,8 @@ bool CriticalVarPass::isValueErrno(Value *V) {
 				CI->getType()->getBitWidth() == 64)) {
 		const APInt &value = CI->getValue();
 		// The value is an errno (negative or positive).
-		if (is_errno(-value) || is_errno(value))
+		// if (is_errno(-value) || is_errno(value))
+		if (value.isNegative())
 			return true;
 	}
 
